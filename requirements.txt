@@ -2,4 +2,5 @@
 
 streamlit
 spacy
-scikit-learn
+
+en-core-web-sm
