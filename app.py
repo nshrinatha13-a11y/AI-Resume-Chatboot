@@ -1,10 +1,15 @@
 import streamlit as st
 import spacy
 import re
+from spacy.cli import download
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except:
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
 resumes = {
     "Amit Sharma": "Data Analyst skilled in Python SQL Excel Power BI",
@@ -38,3 +43,4 @@ results.sort(key=lambda x: x[1], reverse=True)
 
 for r in results:
     st.write(f"**{r[0]}** → {r[1]}% match")
+
